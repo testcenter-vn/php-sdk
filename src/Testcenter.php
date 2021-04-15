@@ -69,6 +69,15 @@ class Testcenter
     	return $publicTests;
     }
 
+    public function getIntegrateUrl($callbackUrl, $remainCredit = 0)
+    {
+        $clientId = config('testcenter.client_id');
+        $verifyString = "client_id={$clientId}&callback_url={$callbackUrl}&remain_credit={$remainCredit}";
+        $secretKey = config('testcenter.partner_secret_key');
+        $signature = Signature::get($verifyString, $secretKey);
+        return config('testcenter.client_url') . '/auth/authorize/?client_id=' . $clientId . '&callback_url=' . $callbackUrl . '&remain_credit=' . $remainCredit . '&signature=' . $signature;
+    }
+
     public function initTestCampaign($testType, $requestId, $partnerUserId, $testCampaignName, $partnerUserName)
     {
     	$client = $this->getClient();
