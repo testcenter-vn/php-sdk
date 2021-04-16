@@ -19,7 +19,7 @@ class TestCampaign
         if (isset($testCampaign->name)) {
             $this->name = $testCampaign->name;
         }
-        if (isset($testCampaign->category)) {
+        if (isset($testCampaign->test_category_name)) {
             $this->category = $testCampaign->test_category_name;
         }
         if (isset($testCampaign->start_at)) {
