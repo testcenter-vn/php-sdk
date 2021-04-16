@@ -7,6 +7,7 @@ class TestCampaign
     public $id;
     public $name;
     public $category;
+    public $testName;
     public $startAt;
     public $endAt;
     public $note;
@@ -19,7 +20,7 @@ class TestCampaign
             $this->name = $testCampaign->name;
         }
         if (isset($testCampaign->category)) {
-            $this->category = $testCampaign->category;
+            $this->category = $testCampaign->test_category_name;
         }
         if (isset($testCampaign->start_at)) {
             $this->startAt = $testCampaign->start_at;
@@ -29,6 +30,9 @@ class TestCampaign
         }
         if (isset($testCampaign->note)) {
             $this->note = $testCampaign->note;
+        }
+        if (isset($testCampaign->test_name)) {
+            $this->testName = $testCampaign->test_name;
         }
         if (isset($testCampaign->edit_url)) {
             $this->editUrl = $testCampaign->edit_url;
