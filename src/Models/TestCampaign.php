@@ -12,6 +12,7 @@ class TestCampaign
     public $endAt;
     public $note;
     public $editUrl;
+    public $canJoin;
 
     public function __construct($testCampaign)
     {
@@ -36,6 +37,9 @@ class TestCampaign
         }
         if (isset($testCampaign->edit_url)) {
             $this->editUrl = $testCampaign->edit_url;
+        }
+        if (isset($testCampaign->can_join)) {
+            $this->canJoin = $testCampaign->can_join;
         }
     }
 }

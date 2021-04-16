@@ -130,4 +130,22 @@ class Examiner
             throw new TestcenterException('Đã có lỗi xảy ra');
         }
     }
+
+    public function getTestCampaign($id)
+    {
+        $client = $this->getClient();
+        try {
+            $response = $client->request('GET', 'test-campaigns/' . $id . '/?sdk=1');
+            $response = json_decode((string)$response->getBody());
+            if ($response->success) {
+                return new TestCampaign($response->test_campaign);
+            }
+        } catch (ClientException $e) {
+            $statusCode = $e->getResponse()->getStatusCode();
+            if ($statusCode == 404) {
+                throw new TestcenterException('API không hợp lệ');
+            }
+            throw new TestcenterException('Đã có lỗi xảy ra');
+        }
+    }
 }
