@@ -18,6 +18,7 @@ class Examiner
     public $companyName;
     public $companyLogoURL;
     public $credit;
+    public $customerCode;
 
     public function __construct($accessToken)
     {
@@ -52,6 +53,7 @@ class Examiner
                 $this->companyName = isset($response->user->company_name) ? $response->user->company_name : null;
                 $this->companyLogoURL = isset($response->user->company_logo_url) ? $response->user->company_logo_url : null;
                 $this->credit = isset($response->user->credit) ? $response->user->credit : null;
+                $this->customerCode = isset($response->user->customer_code) ? $response->user->customer_code : null;
             }
         } catch (ClientException $e) {
             $statusCode = $e->getResponse()->getStatusCode();
