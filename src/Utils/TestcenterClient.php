@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use Testcenter\Testcenter\Exceptions\NotFoundException;
 use Testcenter\Testcenter\Exceptions\ServerErrorException;
 use Testcenter\Testcenter\Exceptions\TestcenterException;
 use Testcenter\Testcenter\Exceptions\TokenInvalidException;
@@ -34,12 +35,14 @@ class TestcenterClient
                 $data = json_decode($response->getBody());
                 $message = $data->message ?? 'Đã có lỗi xảy ra';
                 if ($statusCode == 401) {
-                    throw new TokenInvalidException($message);
+                    throw new TokenInvalidException($message, $statusCode);
                 } else if ($statusCode == 500) {
-                    throw new ServerErrorException($message);
+                    throw new ServerErrorException($message, $statusCode);
+                } else if ($statusCode == 404) {
+                    throw new NotFoundException($message, $statusCode);
                 }
             }
-            throw new TestcenterException($e->getMessage());
+            throw new TestcenterException($e->getMessage(), $statusCode);
         }
     }
 }
