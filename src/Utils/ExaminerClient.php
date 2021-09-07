@@ -12,6 +12,6 @@ class ExaminerClient extends \Testcenter\Testcenter\Utils\TestcenterClient
                 'Authorization' => "Bearer {$accessToken}"
             ]
         ];
-        $this->client = new Client($requestParams);
+        parent::__construct($requestParams);
     }
 }

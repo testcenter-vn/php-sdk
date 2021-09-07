@@ -17,6 +17,23 @@ class TestcenterClient
 {
     protected Client $client;
 
+    public function __construct($requestParams = [])
+    {
+        if (empty($requestParams['headers'])) {
+            $requestParams['headers'] = [];
+        }
+        $requestParams['headers'] = array_merge($this->defaultHeaders(), $requestParams['headers']);
+        $this->client = new Client($requestParams);
+    }
+
+    protected function defaultHeaders()
+    {
+        return [
+            'lang' => \Illuminate\Support\Facades\App::currentLocale()
+        ];
+    }
+
+
     public function request($method, $path, $option = [])
     {
         $client = $this->client;

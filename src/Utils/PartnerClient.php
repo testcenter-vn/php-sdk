@@ -24,7 +24,7 @@ class PartnerClient extends \Testcenter\Testcenter\Utils\TestcenterClient
             ],
             'timeout' => 10
         ];
-        $this->client = new Client($requestParams);
+        parent::__construct($requestParams);
         $this->secretKey = $secretKey;
     }
 
