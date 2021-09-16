@@ -59,7 +59,7 @@ class TestcenterClient
                     throw new NotFoundException($message, $statusCode);
                 }
             }
-            throw new TestcenterException($e->getMessage(), $statusCode);
+            throw new TestcenterException($e->getMessage(), 0);
         }
     }
 }
