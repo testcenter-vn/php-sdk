@@ -15,7 +15,11 @@ Via Composer
 $ composer require testcenter/testcenter
 ```
 
-## Usage
+## Requirements
+- v1.0.0
+  - PHP: ^8.0.2
+- v0.0.11
+  - PHP: ^7.4
 
 ## Change log
 
