@@ -11,7 +11,6 @@ use Testcenter\Testcenter\Utils\TestcenterClient;
 
 class Examiner
 {
-    public $accessToken;
     public $id;
     public $fullname;
     public $username;
@@ -22,16 +21,17 @@ class Examiner
     public $credit;
     public $customerCode;
     private ExaminerClient $client;
-    public function __construct($accessToken)
+
+    public function __construct(ExaminerClient $client)
     {
-        $this->accessToken = $accessToken;
-        $this->client = new ExaminerClient($this->accessToken);
+        $this->client = $client;
         $this->getInfo();
     }
 
     public function getInfo()
     {
         $response = $this->client->request('GET', 'user');
+
         if ($response->user) {
             $this->id = isset($response->user->id) ? $response->user->id : null;
             $this->fullname = isset($response->user->fullname) ? $response->user->fullname : null;
