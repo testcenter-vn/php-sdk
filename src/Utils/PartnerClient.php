@@ -2,6 +2,7 @@
 namespace Testcenter\Testcenter\Utils;
 use GuzzleHttp\Client;
 use Testcenter\Testcenter\Shared\Signature;
+use Testcenter\Testcenter\Exceptions\TestcenterException;
 
 class PartnerClient extends \Testcenter\Testcenter\Utils\TestcenterClient
 {

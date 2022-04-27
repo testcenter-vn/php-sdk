@@ -12,16 +12,17 @@ use Testcenter\Testcenter\Models\TestCampaignStatus;
 use Testcenter\Testcenter\Models\TestCampaign;
 use Testcenter\Testcenter\Exceptions\TestcenterException;
 use GuzzleHttp\Exception\ClientException;
+use Testcenter\Testcenter\Utils\ExaminerClient;
 use Testcenter\Testcenter\Utils\PartnerClient;
 
 class Testcenter
 {
-	private $env;
-	private PartnerClient $client;
-	public function __construct()
+	public $env;
+    public PartnerClient $client;
+	public function __construct(Environment $environment, PartnerClient $partnerClient)
 	{
-	    $this->env = new Environment();
-	    $this->client = new PartnerClient();
+	    $this->env = $environment;
+	    $this->client = $partnerClient;
 	}
 
     public function hello()
@@ -102,6 +103,8 @@ class Testcenter
 
     public function getExaminer($accessToken)
     {
-    	return new Examiner($accessToken);
+        $examinerClient = new ExaminerClient($accessToken);
+
+    	return new Examiner($examinerClient);
     }
 }
