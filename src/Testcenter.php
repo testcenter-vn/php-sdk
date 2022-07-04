@@ -20,10 +20,10 @@ class Testcenter
     private $env;
     private PartnerClient $client;
 
-    public function __construct(Environment $environment, PartnerClient $partnerClient)
+    public function __construct()
     {
-        $this->env = $environment;
-        $this->client = $partnerClient;
+        $this->env = new Environment();
+        $this->client = new PartnerClient();
     }
 
     public function getIntegrateUrl($callbackUrl, $remainCredit = 0)
